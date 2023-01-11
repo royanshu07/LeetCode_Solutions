@@ -11,17 +11,17 @@
  */
 public class Solution {
     public boolean hasCycle(ListNode head) {
-        ArrayList<ListNode> visited = new ArrayList<ListNode>();
-        while(head!=null){
-            if(visited.contains(head)){
-                return true;
-            }
-            else{
-                visited.add(head);
-                head = head.next;
-            }
+        if(head==null||head.next==null){
+            return false;
         }
-        return false;
+        if(head.next==head){
+            return true;
+        }
+        else{
+            ListNode next = head.next;
+            head.next = head;
+            return hasCycle(next);
+        }
         
     }
 }
