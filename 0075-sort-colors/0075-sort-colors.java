@@ -1,34 +1,37 @@
-class Solution {
-   // 0,0,2,1,1,2
+//1  
+//p1    p2
 
+//   i<=p2
+
+
+class Solution {
     public void sortColors(int[] nums) {
-       int zer = 0;
-       int one = 0;
-       int two = 0;
-       
-       for(int i = 0; i<nums.length;i++){
-           if(nums[i]==0){
-               zer++;
-           }
-           if(nums[i]==1){
-               one++;
-           }
-            if(nums[i]==2){
-               two++;
-           }
-       }
-       for(int i = 0;i<zer;i++){
-           nums[i]=0;
-       }
-       for(int i = zer;i<one+zer;i++){
-           nums[i]=1;
-       }
-       for(int i = one+zer;i<nums.length;i++){
-           nums[i]=2;
-      }
-      
-    
-        
+    int p1= 0;
+    int p2 = nums.length-1;
+    int i = 0;
+    int temp;
+    while(i<=p2){
+        if(nums[i]==0){
+            temp = nums[p1];
+            nums[p1] = nums[i];
+            nums[i]=temp;
+            p1++;
+            i++;
+            
+        }
+        else if(nums[i]==2){
+            temp = nums[p2];
+            nums[p2] = nums[i];
+            nums[i]=temp;
+            p2--;
+            
+            
+        }
+        else{
+            i++;
+        }
+
+    }
         
     }
 }
