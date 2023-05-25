@@ -14,7 +14,7 @@ class Solution {
             return null;
         }
         ListNode head = lists[0];
-        ListNode tail = lists[0];
+        
         ListNode pointer1;
         ListNode pointer2;
         
@@ -25,20 +25,35 @@ class Solution {
            else if(lists[0]==null){
                lists[0]=lists[i];
                head = lists[0];
-               tail = lists[0];
+               
                continue;
            }
-           else{
-               pointer1 = lists[0];
-               pointer2 = lists[i];
+           
+            else{
+                pointer1 = lists[0];
+                pointer2 = lists[i];
+                lists[0] = merge(pointer1,pointer2);
+                head = lists[0];
+            } 
+               
+           }
+        
+        return head;
+    }
+    
+    
+    public static ListNode merge(ListNode pointer1 , ListNode pointer2){
+        
+               ListNode head;
+               ListNode tail;
                if(pointer2.val<pointer1.val){
                    head=pointer2;
                    tail = pointer2;
                    pointer2=pointer2.next;
                }
                else{
-                   head = lists[0];
-                   tail = head;
+                   head = pointer1;
+                   tail = pointer1;
                    pointer1=pointer1.next;
                }
                while(pointer1!=null&&pointer2!=null){
@@ -62,11 +77,7 @@ class Solution {
                    tail.next=pointer2;
                    tail = tail.next;
                }
-               lists[0]=head;
-               
-           }
-        }
-        return head;
+           return head;
+        
     }
-    
 }
