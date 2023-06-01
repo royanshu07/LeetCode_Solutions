@@ -70,8 +70,7 @@ class Solution {
             
         }
         
-        return outs;
-        
+         return String.valueOf(out);
        
     }
 }
