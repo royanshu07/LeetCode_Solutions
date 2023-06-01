@@ -15,28 +15,36 @@ class Element implements Comparable<Element>{
 class Solution {
     public String reorganizeString(String s) {
         int[]arr = new  int[26];
+        int reqlen=0;
         for(int i = 0;i<s.length();i++){
+            
             arr[s.charAt(i)-'a']++;
+            if(arr[s.charAt(i)-'a']==1){
+                reqlen++;
+            }
         }
         
-        PriorityQueue<Element> pq = new PriorityQueue<>(Collections.reverseOrder());
+        Element[]pq = new Element[reqlen];
+        int size2=0;
         for(int i = 0;i<arr.length;i++){
             int freq = arr[i];
             if(freq!=0){
                 Element e = new Element(((char)('a'+i)),freq);
-                pq.add(e);
+                pq[size2]=e;
+                size2++;
             }
         }
+        Arrays.sort(pq, Collections.reverseOrder());
         char[]out = new char[s.length()];
         int size = 0;
         int pointer = 0;
-        int skipmin = 0;
-       
-        Element e = pq.poll();
+        int pos  =0;
+        Element e = pq[0];
          int freq = e.freq;
         while(size<s.length()){
             if(freq<=0){
-              e = pq.poll();
+                pos++;
+              e = pq[pos];
             freq = e.freq;}
             if(pointer>=s.length()){
                 pointer = 0;
