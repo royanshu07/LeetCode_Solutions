@@ -45,11 +45,12 @@ class MedianFinder {
    public double findMedian() {
     if (leftheap.size() == rightheap.size()) {
         return (leftheap.peek() + rightheap.peek()) / 2.0;
-    } else if (leftheap.size() > rightheap.size()) {
-        return leftheap.peek();
-    } else {
-        return rightheap.peek();
-    }
+ }
+       else   {
+        return leftheap.peek();}
+    // // else {
+    //     return rightheap.peek();
+    // }
 
 
         
