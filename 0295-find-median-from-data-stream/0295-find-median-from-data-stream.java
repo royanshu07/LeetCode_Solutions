@@ -1,9 +1,11 @@
 class MedianFinder {
     PriorityQueue<Integer> leftheap;
     PriorityQueue<Integer> rightheap;
+    Boolean check;
     public MedianFinder() {
      this.leftheap = new PriorityQueue<>(Collections.reverseOrder());
      this.rightheap = new PriorityQueue<>();
+     check  = true;
         
         
         
@@ -13,10 +15,12 @@ class MedianFinder {
         if(leftheap.isEmpty()&&rightheap.isEmpty()){
             
             leftheap.add(num);
+            check = false;
         }
         else if(leftheap.size()>rightheap.size()){
+            check = true;
             if(num>leftheap.peek()){
-                 
+                
                 rightheap.add(num);
             }
             else{
@@ -27,6 +31,9 @@ class MedianFinder {
             }
         }
          else {
+             if(rightheap.size()==leftheap.size()){
+                 check = false;
+             }
             if(num<rightheap.peek()){
                  
                 leftheap.add(num);
@@ -43,15 +50,12 @@ class MedianFinder {
     
     
    public double findMedian() {
-    if (leftheap.size() == rightheap.size()) {
+    if (check) {
         return (leftheap.peek() + rightheap.peek()) / 2.0;
  }
        else   {
         return leftheap.peek();}
-    // // else {
-    //     return rightheap.peek();
-    // }
-
+    
 
         
     }}
