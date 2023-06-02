@@ -8,16 +8,17 @@ class MedianFinder {
      this.rightheap = new PriorityQueue<>();
      temp = leftheap;
      check  = true;
+    }  
         
         
-        
-    }
+    
     
     public void addNum(int num) {
         if(leftheap.isEmpty()&&rightheap.isEmpty()){
             
             leftheap.add(num);
             check = false;
+            temp = leftheap;
         }
         else if(leftheap.size()>rightheap.size()){
             check = true;
