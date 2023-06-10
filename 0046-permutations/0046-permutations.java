@@ -1,15 +1,7 @@
 class Solution {
     public List<List<Integer>> permute(int[] nums) {
-        int[][] out = permute(nums, 0);
-        List<List<Integer>> finalOut = new ArrayList<>();
-        for (int i = 0; i < out.length; i++) {
-            List<Integer> tempList = new ArrayList<>();
-            for (int j = 0; j < out[i].length; j++) {
-                tempList.add(out[i][j]);
-            }
-            finalOut.add(tempList);
-        }
-        return finalOut;
+        return permute(nums, 0);
+        
     }
 
 
@@ -17,35 +9,38 @@ class Solution {
         
     
     
-    public int[][] permute(int[] nums,int start) {
+    public  List<List<Integer>> permute(int[] nums,int start) {
         
         if(start==nums.length-1){
-            int[][]out = new int[1][];
-            out[0] = new int[]{nums[start]};
+            List<List<Integer>>out = new ArrayList<>();
+            List<Integer>smallout = new ArrayList<>();
+            smallout.add(nums[start]);
+            out.add(smallout);
             
             return out;
         }
         
-        int[][]smallout = permute(nums,start+1);
-       int[][] finalout = new int[(smallout.length) * (smallout[0].length + 1)][];
+     List<List<Integer>>smallout = permute(nums,start+1);
+     List<List<Integer>> finalout = new ArrayList<>();
        int z = 0;
        
-        for(int[]i:smallout){
-             for(int j=0;j<=i.length;j++){
-                int[]temp = new int[i.length+1];
-                temp[j]=nums[start];
+        for(List<Integer>i:smallout){
+             for(int j=0;j<=i.size();j++){
+               List<Integer> temp = new ArrayList<>();
+                //temp[j]=nums[start];
                 int k= 0;
-                for(int l = 0;l<temp.length;l++){
+                for(int l = 0;l<=i.size();l++){
                     if(l==j){
-                        //l++;
+                        temp.add(-1);
                         
                     }
                     else{
-                        temp[l]=i[k];
+                        temp.add(l,i.get(k));
                         k++;
                     }
                 }
-                finalout[z]=temp;
+                temp.set(j,nums[start]);
+                finalout.add(temp);
                 z++;
                 
             }
