@@ -1,52 +1,33 @@
 class Solution {
     public List<List<Integer>> permute(int[] nums) {
-        return permute(nums, 0);
-        
-    }
-
-
-    
-        
-    
-    
-    public  List<List<Integer>> permute(int[] nums,int start) {
-        
-        if(start==nums.length-1){
-            List<List<Integer>>out = new ArrayList<>();
-            List<Integer>smallout = new ArrayList<>();
-            smallout.add(nums[start]);
-            out.add(smallout);
-            
-            return out;
+        List<Integer> nums2 = new ArrayList<>();
+        List<List<Integer>> ans = new ArrayList<>();
+        for(int i = 0;i<nums.length;i++){
+            nums2.add(nums[i]);
         }
+         permute(nums2,ans,0);
+         return ans;
         
-     List<List<Integer>>smallout = permute(nums,start+1);
-     List<List<Integer>> finalout = new ArrayList<>();
-       int z = 0;
        
-        for(List<Integer>i:smallout){
-             for(int j=0;j<=i.size();j++){
-               List<Integer> temp = new ArrayList<>();
-                //temp[j]=nums[start];
-                int k= 0;
-                for(int l = 0;l<=i.size();l++){
-                    if(l==j){
-                        temp.add(-1);
-                        
-                    }
-                    else{
-                        temp.add(l,i.get(k));
-                        k++;
-                    }
-                }
-                temp.set(j,nums[start]);
-                finalout.add(temp);
-                z++;
-                
-            }
-        }
-        return finalout;
-        
-        
     }
+    public void permute(List<Integer> nums2,List<List<Integer>> ans,int start){
+        if(start==nums2.size()-1){
+            ans.add(new ArrayList<>(nums2));
+            
+        }
+        for(int i = start;i<nums2.size();i++){
+            swap(nums2,start,i);
+            permute(nums2,ans,start+1);
+            swap(nums2,start,i);
+        }
+        return;
+    }
+    
+    public static void swap(List<Integer> nums2,int a,int b){
+        int temp = nums2.get(a);
+        nums2.set(a,nums2.get(b));
+        nums2.set(b,temp);
+        return;
+    }
+    
 }
