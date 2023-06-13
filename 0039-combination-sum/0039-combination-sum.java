@@ -19,13 +19,13 @@ class Solution {
         
           combinationSum( candidates, target, start+1, new ArrayList<>(small),finalout);
           //small.add(candidates[start]);
-           List<Integer> temp =  new ArrayList<>(small);
+           //List<Integer> temp =  new ArrayList<>(small);
           int k = target;
            k = k-candidates[start];
           while(k>=0){
           
-           temp.add(candidates[start]);
-           combinationSum( candidates, k, start+1, new ArrayList<>(temp),finalout);
+           small.add(candidates[start]);
+           combinationSum( candidates, k, start+1, new ArrayList<>(small),finalout);
            k = k-candidates[start];
                                   }
           
