@@ -37,17 +37,17 @@ class Solution
         }
        
         int elem = sum/2;
-        for(int i = elem;i>0;i--){
-            if (check(i,nums)){
-                int r =  sum-i;
-                return Math.abs(r-i);
-            }
-        }
-        return sum;
+       int[][]dp = check(elem,nums);
+       for(int i = elem;i>0;i--){
+           if(dp[nums.length][i]==1){
+               return sum-(2*i);
+           }
+       }
+       return sum;
         
     }
     
-    public static boolean check(int sum,int[]nums){
+    public int[][]  check(int sum,int[]nums){
         int[][]dp = new int[nums.length+1][sum+1];
         dp[0][0]=1;
         for(int j = 1;j<=sum;j++){
@@ -68,10 +68,7 @@ class Solution
                 }
             }
         }
-        if(dp[nums.length][sum]==1){
-            return true;
-        }
-        return false;
+       return dp;
     }
 }
 
