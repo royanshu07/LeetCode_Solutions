@@ -48,10 +48,10 @@ class Solution{
            dp[n][len] =cutRod( price, n-1,dp,len);
            return dp[n][len];
         }
-        int a = price[n-1]+cutRod( price, n-1,dp,len-n);
+        //int a = price[n-1]+cutRod( price, n-1,dp,len-n);
         int b = cutRod( price, n-1,dp,len);
         int c = price[n-1]+cutRod( price, n,dp,len-n);
-        dp[n][len]=Math.max(a,Math.max(b,c));
+        dp[n][len]=Math.max(b,c);
         return dp[n][len];
         
         
