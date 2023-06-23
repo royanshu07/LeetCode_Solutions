@@ -58,10 +58,10 @@ class Solution{
             dp[N][W]=knapSack(N-1,  W, val,  wt,dp);
             return dp[N][W];
         }
-        int a = val[N-1]+ knapSack(N-1,  W-wt[N-1], val,  wt,dp);
+        //int a = val[N-1]+ knapSack(N-1,  W-wt[N-1], val,  wt,dp);
         int b = val[N-1]+ knapSack(N,  W-wt[N-1], val,  wt,dp);
         int c = knapSack(N-1,  W, val,  wt,dp);
-        dp[N][W] = Math.max(a,Math.max(b,c));
+        dp[N][W] = Math.max(b,c);
         return dp[N][W];
     }
 }
