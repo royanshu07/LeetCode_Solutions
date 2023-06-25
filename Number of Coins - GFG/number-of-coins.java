@@ -42,7 +42,7 @@ class Solution{
                 }
             }
         for(int j = 0;j<=amount;j++){
-           dp[0][j]=Integer.MAX_VALUE-2; 
+          dp[0][j]=Integer.MAX_VALUE-2; 
         }
         
         for(int i = 2;i<=coins.length;i++){
