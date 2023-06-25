@@ -2,7 +2,7 @@ import java.util.Arrays;
 
 class Solution {
     public int coinChange(int[] coins, int amount) {
-        Arrays.sort(coins);
+        //Arrays.sort(coins);
         int[][] dp = new int[coins.length + 1][amount + 1];
         for (int i = 0; i <= coins.length; i++) {
             for (int j = 0; j <= amount; j++) {
