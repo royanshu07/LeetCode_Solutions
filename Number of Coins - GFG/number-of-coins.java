@@ -28,7 +28,7 @@ class Solution{
 
 	
 	 public int minCoins(int[] coins,int M, int amount) {
-        //Arrays.sort(coins);
+        Arrays.sort(coins);
         int[][] dp = new int[coins.length + 1][amount + 1];
         for(int i = 0;i<=coins.length;i++){
             dp[i][0] = 0; 
