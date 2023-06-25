@@ -18,6 +18,9 @@ class Solution {
 
     public int coinChange(int[] coins, int amount, int n, int no, int[][][] dp) {
         if (amount == 0) {
+            if(dp[n][amount][0]!=-1&&dp[n][amount][0]<no){
+               return dp[n][amount][0]; 
+            }
             dp[n][amount][0] = no;
             return dp[n][amount][0];
         }
