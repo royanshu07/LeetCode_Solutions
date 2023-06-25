@@ -4,56 +4,41 @@ class Solution {
     public int coinChange(int[] coins, int amount) {
         Arrays.sort(coins);
         int[][] dp = new int[coins.length + 1][amount + 1];
-        for (int i = 0; i <= coins.length; i++) {
-            for (int j = 0; j <= amount; j++) {
-                dp[i][j]=-1;
-        }}
-        int res = coinChange(coins, amount, coins.length, dp);
-        if (res >= Integer.MAX_VALUE-1) {
+        for(int i = 0;i<=coins.length;i++){
+            dp[i][0] = 0; 
+        }
+        for(int j = 1;j<=amount;j++){
+             if(j%coins[0]!=0){
+                  dp[1][j] = Integer.MAX_VALUE-1;
+                  }
+            else{
+                dp[1][j] = j/coins[0];
+                }
+            }
+        for(int j = 0;j<=amount;j++){
+           dp[0][j]=Integer.MAX_VALUE-2; 
+        }
+        
+        for(int i = 2;i<=coins.length;i++){
+            for(int j = 1;j<=amount;j++){
+                if (j < coins[i - 1]) {
+                    dp[i][j]=dp[i-1][j];}
+                else{
+                    
+                   int a = 1+dp[i][j-coins[i-1]];
+                   int b = dp[i-1][j];
+                   dp[i][j] = Math.min(a, b);  
+                }
+           
+        
+                
+            }
+        }
+        if(dp[coins.length][amount]>=Integer.MAX_VALUE-1){
             return -1;
         }
-        return res;
-    }
+        return dp[coins.length][amount];
+        
+    }}
 
-    public int coinChange(int[] coins, int amount, int n,int[][]dp) {
-        if (amount == 0) {
-            
-            dp[n][amount] = 0;
-            return dp[n][amount];
-        }
-        if(n==1){
-              if(amount%coins[n-1]!=0){
-                  dp[n][amount] = Integer.MAX_VALUE-1;
-                  return dp[n][amount];}
-            else{
-                dp[n][amount] = amount/coins[n-1];
-                return dp[n][amount];}
-            }
-        
-            
-      
-     
-        
-
-        
-        
-        if (n == 0) {
-            dp[n][amount] = Integer.MAX_VALUE-1;
-            return dp[n][amount];
-        }
-        if (dp[n][amount] != -1) {
-           
-                return dp[n][amount];
-            
-        }
-        if (amount < coins[n - 1]) {
-            return coinChange(coins, amount, n - 1, dp);
-        }
-
-        int a = 1+coinChange(coins, amount - coins[n - 1], n, dp);
-        int b = coinChange(coins, amount, n - 1, dp);
-        dp[n][amount] = Math.min(a, b);
-      
-        return dp[n][amount];
-    }
-}
+  
