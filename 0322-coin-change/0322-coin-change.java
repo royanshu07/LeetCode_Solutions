@@ -21,6 +21,22 @@ class Solution {
             dp[n][amount] = 0;
             return dp[n][amount];
         }
+        if(n==1){
+              if(amount%coins[n-1]!=0){
+                  dp[n][amount] = Integer.MAX_VALUE-1;
+                  return dp[n][amount];}
+            else{
+                dp[n][amount] = amount/coins[n-1];
+                return dp[n][amount];}
+            }
+        
+            
+      
+     
+        
+
+        
+        
         if (n == 0) {
             dp[n][amount] = Integer.MAX_VALUE-1;
             return dp[n][amount];
@@ -33,11 +49,7 @@ class Solution {
         if (amount < coins[n - 1]) {
             return coinChange(coins, amount, n - 1, dp);
         }
-//         if(amount%coins[n-1]==0){
-//          dp[n][amount] = amount/coins[n-1];
-      
-//         return dp[n][amount];   
-//         }
+
         int a = 1+coinChange(coins, amount - coins[n - 1], n, dp);
         int b = coinChange(coins, amount, n - 1, dp);
         dp[n][amount] = Math.min(a, b);
