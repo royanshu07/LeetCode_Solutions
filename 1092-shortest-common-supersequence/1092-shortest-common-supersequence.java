@@ -68,10 +68,10 @@ class Solution {
         p1++;
     }
     if(p1<a.length()){
-        ans+=a.substring(p1,a.length());
+        ans+=a.substring(p1);
     }
     if(p2<b.length()){
-        ans+=b.substring(p2,b.length());
+        ans+=b.substring(p2);
     }
         
     return ans;
