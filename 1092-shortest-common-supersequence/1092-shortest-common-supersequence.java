@@ -55,10 +55,10 @@ class Solution {
             }
         }
     }
-    if(i>=0){
+    if(i>0){
          out = a.substring(0,i)+out; 
     }
-    if(j>=0){
+    if(j>0){
          out = b.substring(0,j)+out; 
     }
         
