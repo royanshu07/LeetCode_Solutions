@@ -42,45 +42,29 @@ class Solution {
             i--;
             j--;
         }
+        
         else{
+           
             if(dp[i-1][j]>dp[i][j-1]){
+                 out = a.charAt(i-1)+out;
                 i--;
             }
             else{
+                 out = b.charAt(j-1)+out;
                 j--;
             }
         }
     }
-        
-    int p1 =0;
-    int p2=0;
-    int p3=0;
-    String ans = "";
-    while(p1<a.length()&&p2<b.length()&&p3<out.length()){
-        while(a.charAt(p1)!=out.charAt(p3)){
-            ans+=a.charAt(p1);
-            p1++;
-        }
-        while(b.charAt(p2)!=out.charAt(p3)){
-            ans+=b.charAt(p2);
-            p2++;
-        }
-        ans+=out.charAt(p3);
-        p3++;
-        p2++;
-        p1++;
+    if(i>=0){
+         out = a.substring(0,i)+out; 
     }
-    if(p1<a.length()){
-        ans+=a.substring(p1);
-    }
-    if(p2<b.length()){
-        ans+=b.substring(p2);
+    if(j>=0){
+         out = b.substring(0,j)+out; 
     }
         
-    return ans;
+  
     
-    
-        
+      return out;  
     
     }
 }
