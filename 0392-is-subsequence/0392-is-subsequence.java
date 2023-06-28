@@ -24,36 +24,10 @@ class Solution {
         }
     }
    
-    int i = a.length();
-    int j = b.length();
-    int[]prev = {i,j};
-    while(i>=0&&j>=0){
-        
-        if(dp[i][j]==0){
-           
-            break;
-        }
-       
-        if(a.charAt(i-1)==b.charAt(j-1)){
-            
-            out = a.charAt(i-1)+out;
-            
-            i--;
-            j--;
-        }
-        else{
-            if(dp[i-1][j]>dp[i][j-1]){
-                i--;
-            }
-            else{
-                j--;
-            }
-        }
-    }
-    if(out.equals(a)){
-        return true;
-    }
-    return false;
+   if(dp[a.length()][b.length()]==a.length()){
+       return true;
+   }
+        return false;
         
     }
 }
