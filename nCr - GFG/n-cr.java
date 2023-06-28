@@ -31,6 +31,9 @@ class Solution{
         if(r>n){
             return 0;
         }
+        if(n-r<r){
+            r= n-r;
+        }
         int[][]dp = new int[n+1][r+1];
         for(int i = 0;i<n+1;i++){
             dp[i][0] =1;
