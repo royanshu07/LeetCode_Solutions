@@ -1,8 +1,8 @@
 class Solution {
     public boolean isSubsequence(String a, String b) {
-        if(a.equals(b)){
-            return true;
-        }
+        // if(a.equals(b)){
+        //     return true;
+        //  }
         int[][]dp = new int[a.length()+1][b.length()+1];
     for(int i = 0;i<=a.length();i++){
         dp[i][0]=0;
