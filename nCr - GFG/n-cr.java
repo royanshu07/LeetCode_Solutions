@@ -27,7 +27,10 @@ class GFG{
 
 class Solution{
     static int nCr(int n, int r)
-    {
+    {   
+        if(r>n){
+            return 0;
+        }
         int[][]dp = new int[n+1][r+1];
         for(int i = 0;i<n+1;i++){
             dp[i][0] =1;
