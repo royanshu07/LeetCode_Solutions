@@ -36,12 +36,13 @@ class Solution {
         if (i >= j) {
             return 0;
         }
-        if (ispal(str, i, j)) {
-            return 0;
-        }
         if (dp[i][j] != -1) {
             return dp[i][j];
         }
+        if (ispal(str, i, j)) {
+            return 0;
+        }
+        
         int min = j;
         for (int k = i; k < j; k++) {
             int a = palindromicPartition(str, i, k, dp);
