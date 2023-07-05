@@ -1,29 +1,30 @@
 class Solution {
     public int lengthOfLIS(int[] nums) {
-        int n = nums.length;
-        int dp[][]=new int[n][n+1];
-        for(int row[]: dp)
-        Arrays.fill(row,-1);
-        return getAns(nums,nums.length,0,-1,dp);
+        int[][] dp = new int[nums.length][nums.length+1];
+        for(int i = 0;i<nums.length;i++){
+            for(int j = 0;j<=nums.length;j++){
+                dp[i][j] =-1;
+            }
+        }
+        return lengthOfLIS(nums,0,-1,dp,nums.length);
+        
         
     }
-    static int getAns(int arr[], int n,  int ind, int prev_index,int[][] dp){
-    
-    // base condition
-    if(ind == n)
-        return 0;
+     public int lengthOfLIS(int[] nums,int start, int prev,int[][]dp,int len) {
+         if(start==len){
+             return 0;
+         }
+         if(dp[start][prev+1]!=-1){
+             return dp[start][prev+1];
+         }
+         int take = 0;
+         if(prev==-1||nums[start]>nums[prev]){
+             take = 1+lengthOfLIS(nums,start+1,start,dp,len);
+         }
+         int nottake = lengthOfLIS(nums,start+1,prev,dp,len);
+          dp[start][prev+1] = Math.max(take,nottake);
+          return dp[start][prev+1];         
         
-    if(dp[ind][prev_index+1]!=-1)
-        return dp[ind][prev_index+1];
-    
-    int notTake = 0 + getAns(arr,n,ind+1,prev_index,dp);
-    
-    int take = 0;
-    
-    if(prev_index == -1 || arr[ind] > arr[prev_index]){
-        take = 1 + getAns(arr,n,ind+1,ind,dp);
-    }
-    
-    return dp[ind][prev_index+1] = Math.max(notTake,take);
-}
-}
+
+         
+}}
