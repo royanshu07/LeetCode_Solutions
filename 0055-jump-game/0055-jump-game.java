@@ -16,16 +16,14 @@ class Solution {
         if(i>=nums.length-1){
             return 1;
         }
-        // if(i>=nums.length){
-        //     return 0;
-        // }
+        
         if(nums[i]==0){
          return 0;}
        if(dp[i]!=-1){
            return dp[i];
            
        }
-       for(int j = 1;j<=nums[i];j++){
+       for(int j = nums[i];j>=1;j--){
            int a= canJump(nums ,j+i,dp);
            if(a==1){
                dp[i]=1;
