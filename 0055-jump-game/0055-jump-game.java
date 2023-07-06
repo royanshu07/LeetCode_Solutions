@@ -13,12 +13,12 @@ class Solution {
         
     }
     public int canJump(int[] nums ,int i,int[]dp) {
-        if(i==nums.length-1){
+        if(i>=nums.length-1){
             return 1;
         }
-        if(i>=nums.length){
-            return 0;
-        }
+        // if(i>=nums.length){
+        //     return 0;
+        // }
         if(nums[i]==0){
          return 0;}
        if(dp[i]!=-1){
