@@ -58,14 +58,14 @@ class Solution {
             if (j - i + 1 < k) {
                 j++;
             } else {
-                boolean isAnagram = true;
-                for (int x = 0; x < 26; x++) {
-                    if (temp[x] != map[x]) {
-                        isAnagram = false;
-                        break;
-                    }
-                }
-                if (isAnagram) {
+                // boolean isAnagram = true;
+                // for (int x = 0; x < 26; x++) {
+                //     if (temp[x] != map[x]) {
+                //         isAnagram = false;
+                //         break;
+                //     }
+                // }
+                if (Arrays.equals(map,temp)) {
                     ans.add(i);
                 }
                 map[s.charAt(i) - 'a']--;
