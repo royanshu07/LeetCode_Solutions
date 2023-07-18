@@ -45,9 +45,9 @@ class Solution {
             
             if(map.size()>k){
                 while(map.size()>k){
-                 if(map.size()==k&&j-i+1>max){
-                    max = j-i+1;
-                }
+                //     max = j-i+1;
+                // }if(map.size()==k&&j-i+1>max){
+                 
                 a = map.getOrDefault(s.charAt(i),0);
                 if(a>1){
                     map.put(s.charAt(i),a-1);
