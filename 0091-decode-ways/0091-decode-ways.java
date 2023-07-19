@@ -1,3 +1,8 @@
+// 12 - 1 2 ,12
+// 06 - 
+    
+
+
 class Solution {
     public int numDecodings(String s) {
         int[][]dp = new int[s.length()][s.length()];
@@ -23,17 +28,17 @@ class Solution {
         if(dp[i][j]!=-1){
             return dp[i][j];
         }
-        if(s.charAt(i+1)=='0'){
-             int a;
-            if(Integer.parseInt(s.substring(i,i+2)) <= 26){
-          a = numDecodings(s,dp,i+2,j);}
-            else{
-               a=0;
-            }
-            dp[i][j]=a;
-            return a ;
-        }
-        else{
+        // if(s.charAt(i+1)=='0'){
+        //      int a;
+        //     if(Integer.parseInt(s.substring(i,i+2)) <= 26){
+        //   a = numDecodings(s,dp,i+2,j);}
+        //     else{
+        //        a=0;
+        //     }
+        //     dp[i][j]=a;
+        //     return a ;
+        // }
+        // else{
             int a = numDecodings(s,dp,i+1,j);
             int b = 0;
             //System.out.println(s.substring(i,i+1));
@@ -41,6 +46,6 @@ class Solution {
               b = numDecodings(s,dp,i+2,j);}
             dp[i][j]=a+b;
             return a+b;
-        }
+        
     }
 }
