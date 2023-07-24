@@ -5,15 +5,18 @@ class Solution {
         for(int i = 0;i<graph.length;i++){
         if(colour[i]==0){
         colour[i]=1;
-        boolean b =  dfs(graph,i,colour);
+        boolean b =  bfs(graph,i,colour);
         if(b==false){
             return false;}
         }}
         return true;
        
     }
-    public boolean dfs(int[][] graph,int curr,int[]colour) {
-       
+    public boolean bfs(int[][] graph,int curr,int[]colour) {
+       Queue<Integer> q = new LinkedList<>();
+        q.add(curr);
+        while(!q.isEmpty()){
+            curr = q.poll();
         for(int i = 0;i<graph[curr].length;i++){
             int iter = graph[curr][i];
             if(colour[curr]==colour[iter]){
@@ -24,8 +27,7 @@ class Solution {
             }
             else{
                 colour[iter]=3-colour[curr]; 
-                if(dfs(graph,iter,colour)==false){
-                return false;
+                q.add(iter);
             }
 
             }
