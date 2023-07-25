@@ -1,52 +1,54 @@
 class Solution {
+    //List<Integer> answer;
     public List<Integer> eventualSafeNodes(int[][] graph) {
-        ArrayList<ArrayList<Integer>> graph2 = new ArrayList<>();
-        int[]indegree = new int[graph.length];
-        for(int i = 0;i<graph.length;i++){
-            ArrayList<Integer> temp = new ArrayList<>();
-            graph2.add(temp);
-                
-        }
-        for(int i = 0;i<graph.length;i++){
-            for(int j = 0;j<graph[i].length;j++){
-                ArrayList<Integer> temp = graph2.get(graph[i][j]);
-                temp.add(i);
-                indegree[i]++;
+        List<Integer> answer = new ArrayList<>();
+        //int[]path = new int[graph.length];
+        int[]visit = new int[graph.length];
+        
+        for(int i =0 ;i<graph.length;i++){
+            if(visit[i]==0){
+                visit[i]=2;
+                //path[i]=1;
+                dfs(i,graph,answer,visit);
             }
         }
-        ArrayList<Integer>  temp = topoSort(graph2,indegree);
-        Collections.sort(temp);      
-        return temp;
-
-      
+        for(int i=0;i<visit.length;i++){
+            if(visit[i]==1){
+                answer.add(i);
+            }
+        }
+        //Collections.sort(answer);
+        return answer;
         
     }
-    static ArrayList<Integer> topoSort(ArrayList<ArrayList<Integer>> adj,int[]indegree) 
-    {
-       
-        ArrayList<Integer> ans = new ArrayList<>();
-        Queue<Integer> q = new LinkedList<>();
-       
+    
+    
+    public boolean dfs(int curr,int[][]graph, List<Integer> answer,int[]visit){
+        int[]adj = graph[curr];
+        if(adj==null||adj.length==0){
+            visit[curr]=1;
+            //path[curr]=0;
+           // answer.add(curr);
+            return true;
+        }
         
-        for(int i = 0;i<indegree.length;i++){
-            if(indegree[i]==0){
-                q.add(i);
+        for(int i:adj){
+            if(visit[i]==2){
+               return false; 
             }
-        }
-        int count = 0;
-        while(!q.isEmpty()){
-            int b=q.poll();
-            ans.add(b);
-            ArrayList<Integer> temp = adj.get(b);
-            count++;
-            for(int k:temp){
-                indegree[k]--;
-                if(indegree[k]==0){
-                    q.add(k);
-                }
+            if(visit[i]==1){
+                continue;
             }
-            
+            //path[i]=1;
+            visit[i]=2;
+           if (dfs(i,graph,answer,visit)==false){
+              return false; 
+           }
         }
-        return ans;
+        visit[curr]=1;
+       // path[curr]=0;
+        //answer.add(curr);
+        return true;
+        
     }
 }
