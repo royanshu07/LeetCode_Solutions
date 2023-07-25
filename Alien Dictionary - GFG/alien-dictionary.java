@@ -83,135 +83,135 @@ class GFG {
 //User function Template for Java
 
 
-class Solution {
-    public String findOrder(String[] dict, int N, int K) {
-        ArrayList<ArrayList<Integer>> graph = new ArrayList<>();
-        for (int i = 0; i < K; i++) {
-            ArrayList<Integer> temp = new ArrayList<>();
-            graph.add(temp);
-        }
+// class Solution {
+//     public String findOrder(String[] dict, int N, int K) {
+//         ArrayList<ArrayList<Integer>> graph = new ArrayList<>();
+//         for (int i = 0; i < K; i++) {
+//             ArrayList<Integer> temp = new ArrayList<>();
+//             graph.add(temp);
+//         }
 
-        for (int i = 0; i < dict.length - 1; i++) {
-            String a = dict[i];
-            String b = dict[i + 1];
-            int j = 0;
-            while (j < a.length() && j < b.length()) {
-                if (a.charAt(j) != b.charAt(j)) {
-                    graph.get(a.charAt(j) - 'a').add(b.charAt(j) - 'a');
-                    break;
-                }
-                j++;
-            }
-        }
+//         for (int i = 0; i < dict.length - 1; i++) {
+//             String a = dict[i];
+//             String b = dict[i + 1];
+//             int j = 0;
+//             while (j < a.length() && j < b.length()) {
+//                 if (a.charAt(j) != b.charAt(j)) {
+//                     graph.get(a.charAt(j) - 'a').add(b.charAt(j) - 'a');
+//                     break;
+//                 }
+//                 j++;
+//             }
+//         }
 
-        int[] ans = topoSort(graph);
-        StringBuilder out = new StringBuilder();
-        for (int i = 0; i < ans.length; i++) {
-            out.append((char) (ans[i] + 'a'));
-        }
-        return out.toString();
-    }
-
-    static int[] topoSort(ArrayList<ArrayList<Integer>> adj) {
-        int[] indegree = new int[adj.size()];
-        int[] ans = new int[adj.size()];
-        Queue<Integer> q = new LinkedList<>();
-        for (int i = 0; i < adj.size(); i++) {
-            ArrayList<Integer> temp = adj.get(i);
-            for (int j : temp) {
-                indegree[j]++;
-            }
-        }
-
-        for (int i = 0; i < indegree.length; i++) {
-            if (indegree[i] == 0) {
-                q.add(i);
-            }
-        }
-        int count = 0;
-        while (!q.isEmpty()) {
-            ans[count] = q.poll();
-            ArrayList<Integer> temp = adj.get(ans[count]);
-            count++;
-            for (int k : temp) {
-                indegree[k]--;
-                if (indegree[k] == 0) {
-                    q.add(k);
-                }
-            }
-        }
-        return ans;
-    }
-}
-
-// class Solution
-// {
-//     public String findOrder(String [] dict, int N, int K)
-//     {
-//       ArrayList<ArrayList<Integer>> graph = new ArrayList<>();
-//       for(int i = 0;i<K;i++){
-//           ArrayList<Integer> temp = new ArrayList<>();
-//           graph.add(temp);
-//       }
-       
-//       for(int i = 0;i<dict.length-1;i++){
-//           String a = dict[i];
-//           String b = dict[i+1];
-//           int j = 0;
-//           while(j<a.length()&&j<b.length()){
-//               if(a.charAt(j)==b.charAt(j)){
-//                   j++;
-//                   continue;
-//               }
-//               else{
-//                  ArrayList<Integer> temp = graph.get(b.charAt(j)-'a');
-//                  temp.add((int)(a.charAt(j)));
-//                  break;
-//               }
-               
-//           }
-//       }
-//       int[]ans = topoSort(graph);
-//       String out ="";
-//       for(int i = 0;i<ans.length;i++){
-//           out+=(char)(ans[i]);
-//       }
-//       return out;
-       
-       
-        
-        
+//         int[] ans = topoSort(graph);
+//         StringBuilder out = new StringBuilder();
+//         for (int i = 0; i < ans.length; i++) {
+//             out.append((char) (ans[i] + 'a'));
+//         }
+//         return out.toString();
 //     }
-//     static int[] topoSort(ArrayList<ArrayList<Integer>> adj) 
-//     {
-//         int[]indegree = new int[adj.size()];
-//         int[]ans = new int[adj.size()];
+
+//     static int[] topoSort(ArrayList<ArrayList<Integer>> adj) {
+//         int[] indegree = new int[adj.size()];
+//         int[] ans = new int[adj.size()];
 //         Queue<Integer> q = new LinkedList<>();
-//         for(int i = 0;i<adj.size();i++){
+//         for (int i = 0; i < adj.size(); i++) {
 //             ArrayList<Integer> temp = adj.get(i);
-//             for(int j :temp){
+//             for (int j : temp) {
 //                 indegree[j]++;
 //             }
 //         }
-        
-//         for(int i = 0;i<indegree.length;i++){
-//             if(indegree[i]==0){
+
+//         for (int i = 0; i < indegree.length; i++) {
+//             if (indegree[i] == 0) {
 //                 q.add(i);
 //             }
 //         }
 //         int count = 0;
-//         while(!q.isEmpty()){
-//             ans[count]=q.poll();
+//         while (!q.isEmpty()) {
+//             ans[count] = q.poll();
 //             ArrayList<Integer> temp = adj.get(ans[count]);
 //             count++;
-//             for(int k:temp){
+//             for (int k : temp) {
 //                 indegree[k]--;
-//                 if(indegree[k]==0){
+//                 if (indegree[k] == 0) {
 //                     q.add(k);
 //                 }
 //             }
-            
 //         }
 //         return ans;
 //     }
 // }
+
+class Solution
+{
+    public String findOrder(String [] dict, int N, int K)
+    {
+      ArrayList<ArrayList<Integer>> graph = new ArrayList<>();
+      for(int i = 0;i<K;i++){
+          ArrayList<Integer> temp = new ArrayList<>();
+          graph.add(temp);
+      }
+       
+      for(int i = 0;i<dict.length-1;i++){
+          String a = dict[i];
+          String b = dict[i+1];
+          int j = 0;
+          while(j<a.length()&&j<b.length()){
+              if(a.charAt(j)==b.charAt(j)){
+                  j++;
+                  continue;
+              }
+              else{
+                 ArrayList<Integer> temp = graph.get(a.charAt(j)-'a');
+                 temp.add(b.charAt(j)-'a');
+                 break;
+              }
+               
+          }
+      }
+      int[]ans = topoSort(graph);
+      String out ="";
+      for(int i = 0;i<ans.length;i++){
+          out+=(char)(ans[i]+'a');
+      }
+      return out;
+       
+       
+        
+        
+    }
+    static int[] topoSort(ArrayList<ArrayList<Integer>> adj) 
+    {
+        int[]indegree = new int[adj.size()];
+        int[]ans = new int[adj.size()];
+        Queue<Integer> q = new LinkedList<>();
+        for(int i = 0;i<adj.size();i++){
+            ArrayList<Integer> temp = adj.get(i);
+            for(int j :temp){
+                indegree[j]++;
+            }
+        }
+        
+        for(int i = 0;i<indegree.length;i++){
+            if(indegree[i]==0){
+                q.add(i);
+            }
+        }
+        int count = 0;
+        while(!q.isEmpty()){
+            ans[count]=q.poll();
+            ArrayList<Integer> temp = adj.get(ans[count]);
+            count++;
+            for(int k:temp){
+                indegree[k]--;
+                if(indegree[k]==0){
+                    q.add(k);
+                }
+            }
+            
+        }
+        return ans;
+    }
+}
