@@ -1,54 +1,47 @@
 class Solution {
-    List<Integer> ans;
+    List<Integer> answer;
     public List<Integer> eventualSafeNodes(int[][] graph) {
+        answer = new ArrayList<>();
+        int[]path = new int[graph.length];
+        int[]visit = new int[graph.length];
         
-          int[]visit = new int[graph.length];
-         ans = new ArrayList<>();
-         for(int i = 0;i<graph.length;i++){
-         // if(visit[i]!=0){
-         //     continue;
-         // }  
-         visit[i]=2;    
-         dfs(graph,ans,i,visit);}
-        
-        for(int i = 0;i<visit.length;i++){
-            if(visit[i]==3){
-                ans.add(i);
+        for(int i =0 ;i<graph.length;i++){
+            if(visit[i]==0){
+                visit[i]=1;
+                path[i]=1;
+                dfs(i,graph,answer,visit,path);
             }
         }
-         return ans;
-    }
-    
-     public int  dfs(int[][] graph,List<Integer> ans,int curr,int[]visit) {
-         int[]adj = graph[curr];
-         if(adj==null||adj.length==0){
-             //System.out.println(curr);
-             visit[curr]=3;
-             return 1;
-         }
-        
-         for(int i:adj){
-             if(visit[i]==2){
-                 
-                 //System.out.println(curr+" "+i);
-                 return 0;
-             }
-             if(visit[i]==1||visit[i]==3){
-                 continue;
-             }
-             visit[i]=2;
-            
-             int a = dfs(graph,ans,i,visit);
-             if(a==0){
-                 System.out.println(curr+" "+i);
-                 return 0;
-             }
-             visit[i]=1;
-         }
-         visit[curr]=3;
-         return 1;
+        Collections.sort(answer);
+        return answer;
         
     }
     
     
+    public boolean dfs(int curr,int[][]graph, List<Integer> answer,int[]visit,int[]path){
+        int[]adj = graph[curr];
+        if(adj==null||adj.length==0){
+            path[curr]=0;
+            answer.add(curr);
+            return true;
+        }
+        
+        for(int i:adj){
+            if(path[i]==1){
+               return false; 
+            }
+            if(visit[i]==1){
+                continue;
+            }
+            path[i]=1;
+            visit[i]=1;
+           if (dfs(i,graph,answer,visit,path)==false){
+              return false; 
+           }
+        }
+        path[curr]=0;
+        answer.add(curr);
+        return true;
+        
+    }
 }
