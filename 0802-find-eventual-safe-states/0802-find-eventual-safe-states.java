@@ -1,7 +1,7 @@
 class Solution {
-    List<Integer> answer;
+    //List<Integer> answer;
     public List<Integer> eventualSafeNodes(int[][] graph) {
-        answer = new ArrayList<>();
+        List<Integer> answer = new ArrayList<>();
         //int[]path = new int[graph.length];
         int[]visit = new int[graph.length];
         
@@ -12,7 +12,12 @@ class Solution {
                 dfs(i,graph,answer,visit);
             }
         }
-        Collections.sort(answer);
+        for(int i=0;i<visit.length;i++){
+            if(visit[i]==1){
+                answer.add(i);
+            }
+        }
+        //Collections.sort(answer);
         return answer;
         
     }
@@ -23,7 +28,7 @@ class Solution {
         if(adj==null||adj.length==0){
             visit[curr]=1;
             //path[curr]=0;
-            answer.add(curr);
+           // answer.add(curr);
             return true;
         }
         
@@ -42,7 +47,7 @@ class Solution {
         }
         visit[curr]=1;
        // path[curr]=0;
-        answer.add(curr);
+        //answer.add(curr);
         return true;
         
     }
