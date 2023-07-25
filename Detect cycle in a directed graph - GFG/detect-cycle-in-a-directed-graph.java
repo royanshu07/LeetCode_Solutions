@@ -34,43 +34,35 @@ class DriverClass {
 class Solution {
     // Function to detect cycle in a directed graph.
     public boolean isCyclic(int V, ArrayList<ArrayList<Integer>> adj) {
-        int[]visited = new int[adj.size()];
-        int[]path = new int[adj.size()];
-        for(int i = 0;i<adj.size();i++){
-            if(visited[i]==0){
-                visited[i]=1;
-                path[i]=1;
-                boolean b = dfs(i,visited,path,adj);
-                if(b){
-                    return b;
-                }
-                
-            }path[i]=0;
-        }
-        return false;
-    }
-    
-    
-    public boolean dfs(int curr, int[]visited,int[]path, ArrayList<ArrayList<Integer>> adj){
-        ArrayList<Integer> curradj = adj.get(curr);
-        for(int i : curradj){
-            if(visited[i]==1&&path[i]==1){
-                return true;
-            }
-            else if(visited[i]==1){
-                
-            }
-            else{
-                visited[i]=1;
-                path[i]=1;
-                if(dfs(i,visited,path,adj)){
-                    return true;
-                }
-               
-            } path[i]=0;
-        }
-        return false;
-        
-        
+       int count = 0;
+       int[]indegree = new int[adj.size()];
+       for(int i= 0;i<adj.size();i++){
+           ArrayList<Integer> temp = adj.get(i);
+           for(int j : temp){
+               indegree[j]++;
+           }
+       }
+       Queue<Integer> q = new LinkedList<>();
+       for(int i = 0;i<indegree.length;i++){
+           if(indegree[i]==0){
+               q.add(i);
+           }
+       }
+       
+       while(!q.isEmpty()){
+           int curr = q.poll();
+           count++;
+           ArrayList<Integer> temp = adj.get(curr);
+           for(int i:temp){
+               indegree[i]--;
+               if(indegree[i]==0){
+                   q.add(i);
+               }
+           }
+       }
+       if(count==adj.size()){
+           return false;
+       }
+       return true;
     }
 }
