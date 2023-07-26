@@ -8,7 +8,7 @@ class Solution {
         map.put('}','{');
         map.put(']','[');
         
-        int count = 0;
+        
         for(int i = 0;i<s.length();i++){
            if (s.charAt(i) == '(' || s.charAt(i) == '{' || s.charAt(i) == '[') {
                 stk.add(s.charAt(i));
@@ -23,7 +23,7 @@ class Solution {
             
         }
         
-        if(stk.size()==0&&count==0){
+        if(stk.size()==0){
             return true;
         }
         return false;
