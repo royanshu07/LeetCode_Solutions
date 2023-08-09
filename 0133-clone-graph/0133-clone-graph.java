@@ -18,37 +18,36 @@ class Node {
 }
 */
 
-
 class Solution {
     public Node cloneGraph(Node node) {
-        if (node == null) {
+        if(node==null){
             return null;
         }
-        
-        Map<Node, Node> map = new HashMap<>();
-        Queue<Node> queue = new LinkedList<>();
-        
+        HashMap<Node,Node> map = new HashMap<>();
         Node copynode = new Node();
         copynode.val = node.val;
         copynode.neighbors = new ArrayList<>();
-        
-        map.put(node, copynode);
+        map.put(node,copynode);
+        Queue<Node> queue = new LinkedList<>();
         queue.add(node);
-        
-        while (!queue.isEmpty()) {
+        while(!queue.isEmpty()){
             Node curr = queue.poll();
-            for (Node neighbor : curr.neighbors) {
-                if (!map.containsKey(neighbor)) {
-                    Node copyNeighbor = new Node();
-                    copyNeighbor.val = neighbor.val;
-                    copyNeighbor.neighbors = new ArrayList<>();
-                    map.put(neighbor, copyNeighbor);
-                    queue.add(neighbor);
+            for(Node temp:curr.neighbors){
+                if(!map.containsKey(temp)){
+                    Node copytemp = new Node();
+                    copytemp.val=temp.val;
+                    copytemp.neighbors = new ArrayList<>();
+                   // map.get(curr).neighbors.add(copytemp);
+                    //copytemp.neighbors.add(map.get(curr));
+                    queue.add(temp);
+                    map.put(temp,copytemp);
                 }
-                map.get(curr).neighbors.add(map.get(neighbor));
+                map.get(curr).neighbors.add(map.get(temp));
             }
         }
         
         return copynode;
+        
+        
     }
 }
