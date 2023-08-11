@@ -31,20 +31,20 @@ class Solution {
         
         while (!queue.isEmpty()) {
             Node temp = queue.poll();
-            
+            //System.out.println(temp);
             
             if(temp==null){
-               if(queue.peek()!=null){
+               if(queue.size()!=0){
                    
                    queue.add(null);
                } 
             } 
             else {
                 temp.next = queue.peek();
-                
-                queue.add(temp.left);
-                
-                queue.add(temp.right);
+                if(temp.left!=null){
+                queue.add(temp.left);}
+                if(temp.right!=null){
+                queue.add(temp.right);}
             }
         }
         
