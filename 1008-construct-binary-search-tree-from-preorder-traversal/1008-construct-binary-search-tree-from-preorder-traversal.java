@@ -22,7 +22,7 @@ class Solution {
         if(i>j){
             return null;
         }
-        System.out.println(preorder[i]+" "+i+" "+j);
+        //System.out.println(preorder[i]+" "+i+" "+j);
         TreeNode root= new TreeNode();
         root.val = preorder[i];
         if(i==j){
