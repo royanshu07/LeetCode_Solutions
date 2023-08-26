@@ -45,13 +45,16 @@ class Solution{
       int j = arr.length-1;
       long ans = arr[i];
       int ansindex = i;
+       if(arr[ansindex]>x){
+          return -1;
+      }
       while(i<=j){
           int mid = (i+j)/2;
           if(arr[mid]<x){
-             if(arr[mid]>ans){
+            
                  ans=arr[mid];
                  ansindex= mid;
-             }
+             
               i  =mid+1;
               
           }
@@ -62,9 +65,7 @@ class Solution{
              j = mid-1; 
           }
       }
-      if(arr[ansindex]>x){
-          return -1;
-      }
+     
       return ansindex;
     }
     
