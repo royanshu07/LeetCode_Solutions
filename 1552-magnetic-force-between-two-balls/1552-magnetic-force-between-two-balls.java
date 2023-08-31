@@ -18,7 +18,7 @@ class Solution {
             }
         }
         
-        return min-1;
+        return max;
     }
     
     public int callast(int dis, int[] arr, int numb) {
