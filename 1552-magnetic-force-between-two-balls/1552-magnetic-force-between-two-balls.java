@@ -4,7 +4,7 @@ class Solution {
     public int maxDistance(int[] position, int m) {
         Arrays.sort(position);
         int min = 0;
-        int max = position[position.length - 1];
+        int max = position[position.length - 1]-position[0];
         
         while (min <= max) {
             
